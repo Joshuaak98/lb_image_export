@@ -11,11 +11,7 @@
 function custom_js_to_head() {
     $title = the_title();
     $mypost = get_page_by_title( $title, '', 'post' );
-    
-    
-    
-    
-        ?>
+    ?>
         <script>
         jQuery(function(){
             jQuery("body.post-type-texte .acf-fields").append('<a href="index.php?param=your-action" class="page-title-action"> <?php echo $mypost->ID; ?> </a>');
@@ -158,85 +154,34 @@ $output_5 = str_replace('\\', '', $output_no_quotes);
 
 $output_relative = str_replace('https://antjerathje.lichtblickdev.de/', '', $output_5);
 
-       //print $output_relative . "<br>";
-
-
         $output_relative_array = explode(" ", $output_relative);
-
-        //print_r($output_relative_array);
-
-       $cdData = strpos($output_no_quotes,"loads\/");
-
-       //print $cdData;
-
-       $myString = preg_replace("/(\d{4,})/", "---", $output_relative);
-
-       $mystring = "";
+        $cdData = strpos($output_no_quotes,"loads\/");
+        $myString = preg_replace("/(\d{4,})/", "---", $output_relative);
+        $mystring = "";
 
        foreach($output_relative_array as $arr){
-       // echo $arr . " ";
-       //echo  substr($arr,0,  27) . " ";
-
-    $imgpath = substr($arr,0,  27);
+        $imgpath = substr($arr,0,  27);
         $imgname = substr($arr, 27);
-
-     
-
         $uploadPos = strrpos($imgpath, "uploads/");
         $uploadInt = strval($uploadPos);
         $pathAbUploads = substr($imgpath, $uploadInt + 8);
-
-       
-
         $fullPath = $pathAbUploads . "" . $imgname . " ";
-
-        $mystring .= $fullPath . " ";
-
-       
-
-        
+        $mystring .= $fullPath . " "; 
        }
-
-
+    
        $zip_filename = get_the_title();
-
-
-       //echo $zip_filename;
-       
-
        $shellEx =  "zip " . $zip_filename . ".zip " . $mystring;
 
-    //   print("cd ../wp-content/uploads/ ; rm " . $zip_filename . ".zip ;" . $shellEx . "; pwd");
     
 
 
-       $myShellRes = shell_exec("cd ../wp-content/uploads/ ; rm " . $zip_filename . ".zip ; ls;" . $shellEx . "; pwd");
-
-
-
-     
-
-
-     //var_dump($myShellRes);
-
-         
-  
-
+        $myShellRes = shell_exec("cd ../wp-content/uploads/ ; rm " . $zip_filename . ".zip ; ls;" . $shellEx . "; pwd");
 
    }
 }
-
-
-
-
     
+        add_action('lb_action', 'my_acf_load_field');
     
-
-    
-  add_action('lb_action', 'my_acf_load_field');
-    
-
-
     ?>
     
     
