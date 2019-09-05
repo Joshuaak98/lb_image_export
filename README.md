@@ -1,0 +1,1 @@
+Das ist mein README für das Lichtblick Plugin für Atnje das Walross
