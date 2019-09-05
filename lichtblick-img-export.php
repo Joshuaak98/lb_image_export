@@ -235,13 +235,6 @@ $output_relative = str_replace('https://antjerathje.lichtblickdev.de/', '', $out
     
   add_action('lb_action', 'my_acf_load_field');
     
-  function hey(){
-      return the_title();
-  }
-
-   
-
-print_r(hey());
 
 
     ?>
