@@ -8,20 +8,6 @@
  * Author URI: http://www.mywebsite.com
  */
 
-function custom_js_to_head() {
-    $title = the_title();
-    $mypost = get_page_by_title( $title, '', 'post' );
-    ?>
-        <script>
-        jQuery(function(){
-            jQuery("body.post-type-texte .acf-fields").append('<a href="index.php?param=your-action" class="page-title-action"> <?php echo $mypost->ID; ?> </a>');
-        });
-        </script>
-        <?php
-    }
-    add_action('admin_head', 'custom_js_to_head');
-
-
 
 
     function custom_img_js_to_head() {
@@ -81,11 +67,9 @@ function custom_js_to_head() {
             <?php
         }
     }
-    
-    
-    
-    
     add_action( 'init', 'func_export_all_posts' );
+
+
     function func_export_all_posts() {
         if(isset($_GET['export_all_posts'])) {
             $arg = array(
@@ -119,8 +103,11 @@ function custom_js_to_head() {
     
 global $pagenow;
 
-    
-    function my_acf_load_field(){
+  
+/*
+Funktion die alle Bilder in dem "Galarie Feld" der Bilder Beiträge in einer .zip Datei sammelt, und diese im wp-content/uploads Ordner speichert.
+*/
+function my_acf_load_field(){
 
      
         if( ($pagenow == "post.php") || (get_post_type() == "bilder") ){
@@ -139,12 +126,9 @@ global $pagenow;
      
     
     }
-    
-    else {
-      //  print ("empty");
-    }
 
-  $string = json_encode($result);
+
+$string = json_encode($result);
 
 $output = str_replace("," , " " , $string);
 $output_2 = str_replace("[", "", $output);
